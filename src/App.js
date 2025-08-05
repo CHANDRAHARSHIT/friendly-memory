@@ -102,15 +102,32 @@ function ResourceCard({ resource }) {
 
 function Home({ onUploadClick }) {
   return (
-    <main className="main-content hero">
-      <section className="hero-section-adv">
-        <div className="hero-text">
-          <h1>Welcome to <span className="brand">YOUR BUDDY</span> <span className="hero-emoji">🤝</span></h1>
-          <p className="subtitle">India’s largest student community for sharing academic resources. Access previous year papers, notes, and study materials from <span className="highlight">top colleges & universities</span> across the country.</p>
-          <div className="cta-buttons">
-            <Link className="cta" to="/browse">Browse Resources</Link>
-            <button className="cta secondary" onClick={onUploadClick}>Contribute Now</button>
+    <main className="main-content">
+      <section className="hero-section-new">
+        <div className="hero-overlay">
+          <div className="hero-text-new">
+            <h1>Welcome to YOUR BUDDY</h1>
+            <p>Your one-stop platform for all academic resources.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="about-mission-section">
+        <div className="about-us">
+          <h2>About Us</h2>
+          <p>We are a passionate team of students and educators dedicated to making academic resources more accessible to every student in India. Our platform is built on the principle of "for the students, by the students."</p>
+        </div>
+        <div className="our-mission">
+          <h2>Our Mission</h2>
+          <p>Our mission is to create a collaborative ecosystem where students can share and access high-quality study materials, including notes, previous year papers, and more, to excel in their academic journey.</p>
+        </div>
+      </section>
+
+      <section className="actions-section">
+        <p className="cta-message">Download or upload notes to help the community!</p>
+        <div className="cta-buttons">
+          <Link className="cta" to="/browse">Browse Resources</Link>
+          <button className="cta secondary" onClick={onUploadClick}>Contribute Now</button>
         </div>
         <div className="hero-graphic-adv">
           <div className="hero-card">📄 PYQ Papers</div>
@@ -118,20 +135,67 @@ function Home({ onUploadClick }) {
           <div className="hero-card">🤝 Community</div>
         </div>
       </section>
-      <section className="stats-section">
-        <div className="stat">
-          <h3>10,000+</h3>
-          <p>Resources Shared</p>
-        </div>
-        <div className="stat">
-          <h3>50,000+</h3>
-          <p>Active Students</p>
-        </div>
-        <div className="stat">
-          <h3>500+</h3>
-          <p>Colleges & Universities</p>
+
+      <section className="stats-section-new">
+        <h2>Our Stats</h2>
+        <div className="stats-list">
+          <div className="stat-card">
+            <div className="icon">📝</div>
+            <h3>12,000+</h3>
+            <p>Total Notes</p>
+          </div>
+          <div className="stat-card">
+            <div className="icon">👥</div>
+            <h3>8,000+</h3>
+            <p>Contributors</p>
+          </div>
+          <div className="stat-card">
+            <div className="icon">📥</div>
+            <h3>1,00,000+</h3>
+            <p>Notes Downloaded</p>
+          </div>
         </div>
       </section>
+
+      <section className="featured-content-section">
+        <h2>Featured Content</h2>
+        <div className="featured-content-list">
+          <div className="featured-card">
+            <h3>Recently Added</h3>
+            <p>Operating Systems - Complete Notes</p>
+          </div>
+          <div className="featured-card">
+            <h3>Most Downloaded</h3>
+            <p>Data Structures and Algorithms - PYQs</p>
+          </div>
+          <div className="featured-card">
+            <h3>Trending Subjects</h3>
+            <p>Machine Learning</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="achievements-section">
+        <h2>Our Achievements</h2>
+        <div className="achievements-list">
+          <div className="achievement-card">
+            <div className="icon">📄</div>
+            <h3>10,000+</h3>
+            <p>Resources Shared</p>
+          </div>
+          <div className="achievement-card">
+            <div className="icon">🧑‍🎓</div>
+            <h3>50,000+</h3>
+            <p>Active Students</p>
+          </div>
+          <div className="achievement-card">
+            <div className="icon">🏛️</div>
+            <h3>500+</h3>
+            <p>Colleges & Universities</p>
+          </div>
+        </div>
+      </section>
+
       <section className="features-section">
         <h2>Why Choose YOUR BUDDY?</h2>
         <div className="features-list">
@@ -274,16 +338,23 @@ function Register() {
 
 function App() {
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <Router>
       <div className="app-bg">
-        <nav className="navbar">
+        <nav className="navbar sticky">
           <span className="logo">🤝 YOUR BUDDY</span>
-          <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/browse">Browse</Link>
-            <button className="nav-btn" onClick={() => setUploadOpen(true)}>Upload</button>
-            <Link to="/login">Login</Link>
+          <div className={`nav-links ${menuOpen ? 'nav-active' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse</Link>
+            <button className="nav-btn" onClick={() => { setUploadOpen(true); setMenuOpen(false); }}>Upload</button>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+          </div>
+          <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+            <div className="line1"></div>
+            <div className="line2"></div>
+            <div className="line3"></div>
           </div>
         </nav>
         <Routes>
@@ -293,7 +364,40 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
         <UploadModal open={uploadOpen} onClose={() => setUploadOpen(false)} />
-        <footer className="footer">&copy; {new Date().getFullYear()} YOUR BUDDY. Made for students, by students.</footer>
+        <footer className="footer">
+          <div className="footer-content">
+            <div className="footer-section about">
+              <h1 className="logo-text"><span>YOUR</span>BUDDY</h1>
+              <p>
+                Your Buddy is a platform for students to share and find academic resources.
+                We aim to create a community of learners who help each other grow.
+              </p>
+              <div className="contact">
+                <span><i className="fas fa-phone"></i> &nbsp; 123-456-789</span>
+                <span><i className="fas fa-envelope"></i> &nbsp; info@yourbuddy.com</span>
+              </div>
+              <div className="socials">
+                <Link to="#"><i className="fab fa-facebook"></i></Link>
+                <Link to="#"><i className="fab fa-instagram"></i></Link>
+                <Link to="#"><i className="fab fa-twitter"></i></Link>
+                <Link to="#"><i className="fab fa-youtube"></i></Link>
+              </div>
+            </div>
+            <div className="footer-section links">
+              <h2>Quick Links</h2>
+              <br />
+              <ul>
+                <li><Link to="/about">About Us</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
+                <li><Link to="/faq">FAQs</Link></li>
+                <li><Link to="/policy">Terms & Privacy Policy</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            &copy; {new Date().getFullYear()} YOUR BUDDY | Designed by Students for Students
+          </div>
+        </footer>
       </div>
     </Router>
   );
