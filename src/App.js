@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import UploadResource from './pages/UploadResource';
 
 const colleges = [
   'Select College/University',
@@ -100,7 +101,7 @@ function ResourceCard({ resource }) {
   );
 }
 
-function Home({ onUploadClick }) {
+function Home() {
   return (
     <main className="main-content">
       <section className="hero-section-new">
@@ -127,7 +128,7 @@ function Home({ onUploadClick }) {
         <p className="cta-message">Download or upload notes to help the community!</p>
         <div className="cta-buttons">
           <Link className="cta" to="/browse">Browse Resources</Link>
-          <button className="cta secondary" onClick={onUploadClick}>Contribute Now</button>
+          <Link className="cta secondary" to="/upload">Contribute Now</Link>
         </div>
         <div className="hero-graphic-adv">
           <div className="hero-card">📄 PYQ Papers</div>
@@ -248,65 +249,6 @@ function Browse() {
   );
 }
 
-function UploadModal({ open, onClose }) {
-  const [form, setForm] = useState({
-    college: 'Select College/University',
-    course: '',
-    subject: '',
-    year: '',
-    semester: '',
-    type: 'PYQ',
-    title: '',
-    file: null
-  });
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setForm(f => ({ ...f, [name]: files ? files[0] : value }));
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Resource uploaded! (Demo only)');
-    onClose();
-  };
-  return open ? (
-    <div className="modal-bg">
-      <div className="modal">
-        <h2>Upload Resource</h2>
-        <form className="upload-form" onSubmit={handleSubmit}>
-          <label>College/University</label>
-          <select name="college" value={form.college} onChange={handleChange} required>
-            {colleges.map(c => <option key={c}>{c}</option>)}
-          </select>
-          <label>Course</label>
-          <input name="course" type="text" placeholder="e.g. B.Tech CSE" value={form.course} onChange={handleChange} required />
-          <label>Subject</label>
-          <input name="subject" type="text" placeholder="e.g. Data Structures" value={form.subject} onChange={handleChange} required />
-          <label>Year</label>
-          <input name="year" type="text" placeholder="e.g. 2nd Year" value={form.year} onChange={handleChange} required />
-          <label>Semester</label>
-          <input name="semester" type="text" placeholder="e.g. Sem 4" value={form.semester} onChange={handleChange} required />
-          <label>Document Type</label>
-          <select name="type" value={form.type} onChange={handleChange} required>
-            <option>PYQ</option>
-            <option>Notes</option>
-            <option>Mid-Sem Papers</option>
-            <option>Books</option>
-            <option>Internal Exam Papers</option>
-            <option>Assignments</option>
-          </select>
-          <label>Title</label>
-          <input name="title" type="text" placeholder="Resource Title" value={form.title} onChange={handleChange} required />
-          <label>Upload File</label>
-          <input name="file" type="file" onChange={handleChange} required />
-          <div className="modal-actions">
-            <button type="submit" className="cta">Upload</button>
-            <button type="button" className="cta secondary" onClick={onClose}>Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  ) : null;
-}
 
 function Login() {
   return (
@@ -337,7 +279,6 @@ function Register() {
 }
 
 function App() {
-  const [uploadOpen, setUploadOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -348,8 +289,8 @@ function App() {
           <div className={`nav-links ${menuOpen ? 'nav-active' : ''}`}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse</Link>
-            <button className="nav-btn" onClick={() => { setUploadOpen(true); setMenuOpen(false); }}>Upload</button>
-            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+            <Link to="/upload" className="nav-btn" onClick={() => setMenuOpen(false)}>Upload</Link>
+            <Link to="/register" className="nav-btn-cta" onClick={() => setMenuOpen(false)}>Get Started</Link>
           </div>
           <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
             <div className="line1"></div>
@@ -358,12 +299,12 @@ function App() {
           </div>
         </nav>
         <Routes>
-          <Route path="/" element={<Home onUploadClick={() => setUploadOpen(true)} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/upload" element={<UploadResource />} />
         </Routes>
-        <UploadModal open={uploadOpen} onClose={() => setUploadOpen(false)} />
         <footer className="footer">
           <div className="footer-content">
             <div className="footer-section about">
@@ -394,9 +335,9 @@ function App() {
               </ul>
             </div>
           </div>
-          <div className="footer-bottom">
+          <p className="footer-bottom">
             &copy; {new Date().getFullYear()} YOUR BUDDY | Designed by Students for Students
-          </div>
+          </p>
         </footer>
       </div>
     </Router>
