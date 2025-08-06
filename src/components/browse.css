@@ -9,7 +9,7 @@
 .browse-controls .college-select {
     padding: 10px 15px;
     padding-right: 40px; /* Space for the dropdown arrow */
-    font-size: 1rem;
+    font-size: 0.8rem;
     border: 2px solid #2d7cff;
     border-radius: 6px;
     background-color: #fff;
@@ -31,7 +31,7 @@
 .browse-controls input {
     /* cursor: pointer; */
     padding: 10px 15px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     border: 2px solid #2d7cff;
     border-radius: 6px;
     background-color: white;
@@ -45,7 +45,9 @@
 
 .browse-controls .cta {
     border: 0px;
-    padding: 10px 20px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    font-weight: 400;
 }
 
 

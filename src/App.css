@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(120deg, #eaf6ff 0%, #f7e8ff 100%);
+  background: linear-gradient(120deg, #ffffff 0%, #2035f8 100%);
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #2d7cff #f1f1f1;
@@ -57,7 +57,7 @@ html::-webkit-scrollbar-thumb:hover {
   font-weight: bold;
 }
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #444;
   margin-bottom: 32px;
   max-width: 500px;
@@ -103,12 +103,6 @@ html::-webkit-scrollbar-thumb:hover {
   transform: scale(0.98);
 }
 
-.hero-text-new h1 {
-  /* text-decoration: dashed; */
-  color: transparent;
-  text-transform: uppercase;
-  -webkit-text-stroke: 2px blue;
-}
 
 .footer {
   background: #333;
@@ -143,6 +137,11 @@ html::-webkit-scrollbar-thumb:hover {
   margin-bottom: 0.5rem;
 }
 
+.footer .footer-section p {
+  font-size: 1rem;
+  padding: 0.6rem 0;
+}
+
 .footer .footer-content .about .socials a {
   border: 1px solid #fff;
   width: 45px;
@@ -150,9 +149,9 @@ html::-webkit-scrollbar-thumb:hover {
   padding-top: 4px;
   margin-right: 5px;
   text-align: center;
-  line-height: 38px;
+  line-height: 32px;
   display: inline-block;
-  font-size: 1.3em;
+  font-size: 1rem;
   border-radius: 5px;
   transition: all .3s;
   color: #fff;
@@ -167,7 +166,7 @@ html::-webkit-scrollbar-thumb:hover {
 .footer .footer-content .links ul a {
   display: block;
   margin-bottom: 10px;
-  font-size: 1.2em;
+  font-size: 1.0rem;
   transition: all .3s;
   color: #fff;
   text-decoration: none;
@@ -181,7 +180,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .footer .footer-bottom {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #fff;
 }
 
@@ -211,6 +210,7 @@ html::-webkit-scrollbar-thumb:hover {
   background: url('https://www.shutterstock.com/shutterstock/videos/11095445/thumb/1.jpg?ip=x480') no-repeat center center/cover;
   position: relative;
   display: flex;
+  background-attachment: fixed;
   align-items: center;
   justify-content: center;
   color: white;
@@ -230,13 +230,26 @@ html::-webkit-scrollbar-thumb:hover {
   text-align: center;
 }
 
-.hero-text-new h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+.hero-text-new {
+  text-transform: uppercase;
+  font-size: 1.5rem; /* Further adjusted font size to be more normal */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 10px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 60%;
+  padding: 20px;
+  text-align: center;
 }
 
 .hero-text-new p {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .about-mission-section {
@@ -253,13 +266,13 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .about-mission-section h2 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
   color: #333;
 }
 
 .about-mission-section p {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   color: #666;
   line-height: 1.6;
 }
@@ -314,13 +327,13 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .achievement-card h3 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   color: #2d7cff;
   margin-bottom: 0.5rem;
 }
 
 .achievement-card p {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   color: #666;
 }
 
@@ -330,7 +343,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .features-section h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
   color: #333;
 }
@@ -368,70 +381,6 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 
-@media (max-width: 768px) {
-  .about-mission-section, .achievements-list, .features-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .about-us, .our-mission, .achievement-card, .feature-card {
-    max-width: 80%;
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-mission-section, .achievements-list, .features-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .about-us, .our-mission, .achievement-card, .feature-card {
-    max-width: 80%;
-    width: 100%;
-  }
-
-.nav-links {
-    position: fixed;
-    right: 0px;
-    height: 100vh;
-    top: 0;
-    background-color: rgba(45, 124, 255, 0.95);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 60%;
-    transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 1001;
-    box-shadow: -10px 0px 30px -15px rgba(0, 0, 0, 0.3);
-  }
-
-  .nav-links.nav-active {
-    transform: translateX(0%);
-  }
-
-  .burger {
-    display: block;
-  }
-}
-
-.toggle .line1 {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.toggle .line2 {
-  opacity: 0;
-}
-
-.toggle .line3 {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
 .actions-section .cta-message {
   font-size: 1.2rem;
   margin-bottom: 1rem;
@@ -465,18 +414,18 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .featured-card h3, .stat-card h3 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #2d7cff;
 }
 
 .featured-card p, .stat-card p {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   color: #666;
 }
 
 .stat-card .icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #2d7cff;
 }
@@ -561,7 +510,7 @@ html::-webkit-scrollbar-thumb:hover {
   }
 
   .hero-text-new h1 {
-    font-size: 2.5rem;
+    font-size: 1rem; /* Adjusted for smaller screens */
   }
 
   .hero-text-new p {
@@ -571,7 +520,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 480px) {
   .hero-text-new h1 {
-    font-size: 2rem;
+    font-size: 0.8rem; /* Further adjusted for very small screens */
   }
 
   .hero-text-new p {

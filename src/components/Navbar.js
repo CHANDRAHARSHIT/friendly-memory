@@ -1,18 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import React, { useEffect, useState } from 'react';
+import './Navbar.css'; // Optional: for styling
 
-export default function Navbar() {
+const FadeNavbar = () => {
+  const [opacity, setOpacity] = useState(1);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        setOpacity(0.3);
+      } else {
+        // Scrolling up
+        setOpacity(1);
+      }
+
+      setLastScrollTop(scrollTop);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollTop]);
+
   return (
-    <nav className="navbar-pro">
-      <div className="navbar-logo">YOUR BUDDY</div>
-      <div className="navbar-links">
-        <Link to="/">Home</Link>
-        <Link to="/browse">Browse</Link>
-        <Link to="/upload">Upload</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/login">Login</Link>
-      </div>
+    <nav className="fade-navbar" style={{ opacity }}>
+      <h1>My Website</h1>
     </nav>
   );
-}
+};
+
+export default FadeNavbar;

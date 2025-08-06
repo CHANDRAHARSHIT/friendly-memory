@@ -1,23 +1,24 @@
 .navbar {
   display: flex;
   justify-content: space-around;
-  height: 80px;
-  gap: 80vh;
+  height: 100px;
+  gap: 65vh;
   align-items: center;
   padding: 15px 20px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #2338e6 0%, #03bcff 100%);
   color: #fff;
   box-shadow: 0 2px 8px rgba(45,124,255,0.07);
+  transition: opacity 0.3s ease;
+  z-index: 1000;
 }
 
 .logo {
-  font-size: 2rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 .nav-links {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +43,7 @@
   color: #2d7cff;
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 1.1rem;
+  font-size: 0.96rem;
   font-weight: bold;
   transition: all 0.3s ease-in;
 }

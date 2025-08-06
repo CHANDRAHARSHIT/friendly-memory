@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import './index.css';
 import './components/Navbar.css';
 import './components/browse.css';
-import UploadResource from './pages/UploadResource';
+import './components/upload.css';
+import Upload from './components/Upload';
+import ico from "./assets/ico.png";
+import Loader from "./components/loader";
 
 const colleges = [
   'Select College/University',
   'Delhi University', 'IIT Bombay', 'IIT Delhi', 'IIT Kanpur', 'IIT Kharagpur', 'IIT Madras',
-  'BITS Pilani', 'NIT Trichy', 'NIT Surathkal', 'JNU', 'AIIMS Delhi', 'Jamia Millia Islamia', 'BHU Varanasi', 'Other...'
+  'BITS Pilani', 'NIT Trichy', 'NIT Surathkal', 'BIAS Bhimtal', 'JNU', 'AIIMS Delhi', 'Jamia Millia Islamia', 'BHU Varanasi', 'Other...'
 ];
-
+ 
 const sampleResources = [
   {
     id: 1,
@@ -286,12 +289,21 @@ function Register() {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 2000); // Simulate a 2-second loading time
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <Router>
+      {showLoader && <Loader />}
       <div className="app-bg">
         <nav className="navbar sticky">
-          <span className="logo">🤝 YOUR BUDDY</span>
+          <span className="logo"><img src={ico} alt="Logo" style={{ height: "160px", position: "relative", top: "10px" }} /></span>
           <div className={`nav-links ${menuOpen ? 'nav-active' : ''}`}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse</Link>
@@ -309,7 +321,7 @@ function App() {
           <Route path="/browse" element={<Browse />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/upload" element={<UploadResource />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
         <footer className="footer">
           <div className="footer-content">
@@ -321,13 +333,12 @@ function App() {
               </p>
               <div className="contact">
                 <span><i className="fas fa-phone"></i> &nbsp; 123-456-789</span>
-                <span><i className="fas fa-envelope"></i> &nbsp; info@yourbuddy.com</span>
+                <span><i className="fas fa-envelope"></i> &nbsp; summercoders25@gmail.com</span>
               </div>
               <div className="socials">
-                <Link to="#"><i className="fab fa-facebook"></i></Link>
+                <Link to="#"><i className="fab fa-linkedin"></i></Link>
                 <Link to="#"><i className="fab fa-instagram"></i></Link>
                 <Link to="#"><i className="fab fa-twitter"></i></Link>
-                <Link to="#"><i className="fab fa-youtube"></i></Link>
               </div>
             </div>
             <div className="footer-section links">
