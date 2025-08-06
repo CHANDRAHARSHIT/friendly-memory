@@ -1,0 +1,129 @@
+.browse-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 15px;
+}
+ 
+.browse-controls .college-select {
+    padding: 10px 15px;
+    padding-right: 40px; /* Space for the dropdown arrow */
+    font-size: 1rem;
+    border: 2px solid #2d7cff;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.browse-controls input {
+    /* cursor: pointer; */
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #2d7cff;
+    border-radius: 6px;
+    background-color: white;
+    color: #333;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 0.2s ease;
+}
+
+.browse-controls .cta {
+    border: 0px;
+    padding: 10px 20px;
+}
+
+
+.resource-list-adv {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-items: center; /* Center items horizontally within their grid area */
+}
+
+.resource-card-adv {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; /* Ensure cards take full width of their grid column */
+  max-width: 350px; /* Limit card width for better aesthetics */
+  transition: transform 0.2s ease-in-out;
+}
+
+.resource-card-adv:hover {
+  transform: translateY(-5px);
+}
+
+.resource-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.resource-type {
+  background-color: #2d7cff;
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.resource-rating {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.resource-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.resource-meta span {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.4rem;
+}
+
+.resource-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.resource-footer span {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.resource-footer .cta {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+.resource-card-adv .cta {
+  border: 0px;
+}

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import './index.css';
+import './components/Navbar.css';
+import './components/browse.css';
 import UploadResource from './pages/UploadResource';
 
 const colleges = [
@@ -224,25 +227,28 @@ function Home() {
 function Browse() {
   const [selectedCollege, setSelectedCollege] = useState('Select College/University');
   const [search, setSearch] = useState('');
-  const filtered = sampleResources.filter(r =>
+
+  const filteredResources = sampleResources.filter(r =>
     (selectedCollege === 'Select College/University' || r.college === selectedCollege) &&
     (search === '' || r.title.toLowerCase().includes(search.toLowerCase()) || r.subject.toLowerCase().includes(search.toLowerCase()))
   );
+
   return (
     <main className="main-content browse-adv">
-      <h2>Browse Resources</h2>
+      <h1>Browse Resources</h1>
       <div className="browse-controls">
-        <select value={selectedCollege} onChange={e => setSelectedCollege(e.target.value)}>
+        <select className="college-select" value={selectedCollege} onChange={e => setSelectedCollege(e.target.value)}>
           {colleges.map(c => <option key={c}>{c}</option>)}
         </select>
         <input className="search-input" placeholder="Search by subject, course, year..." value={search} onChange={e => setSearch(e.target.value)} />
         <button className="cta">Search</button>
       </div>
+
       <div className="resource-list-adv">
-        {filtered.length === 0 ? (
+        {filteredResources.length === 0 ? (
           <div className="resource-card placeholder">No resources found. Try searching or uploading!</div>
         ) : (
-          filtered.map(resource => <ResourceCard key={resource.id} resource={resource} />)
+          filteredResources.map(resource => <ResourceCard key={resource.id} resource={resource} />)
         )}
       </div>
     </main>
